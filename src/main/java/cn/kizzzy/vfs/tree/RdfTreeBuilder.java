@@ -40,8 +40,8 @@ public class RdfTreeBuilder extends TreeBuilder<RdfFileItem> {
                     child = leaf;
                 } else {
                     child = new Node<>(idGenerator.getId(), name);
-                    root.folderKvs.put(child.id, child);
                 }
+                root.folderKvs.put(child.id, child);
                 parent.children.put(name, child);
             }
             parent = child;

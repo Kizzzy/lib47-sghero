@@ -9,15 +9,12 @@ import cn.kizzzy.vfs.ITree;
 import cn.kizzzy.vfs.streamable.FileStreamable;
 import cn.kizzzy.vfs.tree.Leaf;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
 public class RdfPackage extends PackageAdapter {
     
     private final ITree<RdfFileItem> tree;
     
     public RdfPackage(String root, ITree<RdfFileItem> tree) {
-        super(root, '\\', null);
+        super(root);
         this.tree = tree;
     }
     
@@ -38,9 +35,9 @@ public class RdfPackage extends PackageAdapter {
             return null;
         }
         
-        Path fullPath = Paths.get(root, file.pkg);
+        String fullPath = FILE_SEPARATOR.combine(root, file.pkg);
         if (file.getSource() == null) {
-            file.setSource(new FileStreamable(fullPath.toString()));
+            file.setSource(new FileStreamable(fullPath));
         }
         
         try (FullyReader reader = file.OpenStream()) {
