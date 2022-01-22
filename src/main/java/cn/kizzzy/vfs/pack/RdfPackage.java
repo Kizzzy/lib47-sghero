@@ -9,13 +9,10 @@ import cn.kizzzy.vfs.ITree;
 import cn.kizzzy.vfs.streamable.FileStreamable;
 import cn.kizzzy.vfs.tree.Leaf;
 
-public class RdfPackage extends PackageAdapter {
+public class RdfPackage extends AbstractPackage {
     
-    private final ITree<RdfFileItem> tree;
-    
-    public RdfPackage(String root, ITree<RdfFileItem> tree) {
-        super(root);
-        this.tree = tree;
+    public RdfPackage(String root, ITree tree) {
+        super(root, tree);
     }
     
     @Override
@@ -25,15 +22,12 @@ public class RdfPackage extends PackageAdapter {
     
     @Override
     protected Object loadImpl(String path, IFileLoader<?> loader) throws Exception {
-        Leaf<RdfFileItem> leaf = tree.getLeaf(path);
-        if (leaf == null) {
+        Leaf leaf = tree.getLeaf(path);
+        if (leaf == null || !(leaf.item instanceof RdfFileItem)) {
             return null;
         }
         
-        RdfFileItem file = leaf.item;
-        if (file == null) {
-            return null;
-        }
+        RdfFileItem file = (RdfFileItem) leaf.item;
         
         String fullPath = FILE_SEPARATOR.combine(root, file.pkg);
         if (file.getSource() == null) {

@@ -40,20 +40,20 @@ public class ListPkgTest {
             return;
         }
         
-        ITree<RdfFileItem> tree = new RdfTreeBuilder(rdfFile, new IdGenerator()).build();
+        ITree tree = new RdfTreeBuilder(rdfFile, new IdGenerator()).build();
         
         for (String path : paths) {
             listNodeImpl(tree, path);
         }
     }
     
-    private static void listNodeImpl(ITree<RdfFileItem> tree, String path) {
-        List<Node<RdfFileItem>> list = tree.listNode(path);
-        list.sort(new NodeComparator<>());
+    private static void listNodeImpl(ITree tree, String path) {
+        List<Node> list = tree.listNode(path);
+        list.sort(new NodeComparator());
         
         System.out.printf("path: %-32s, node count: %4d, list:", path, list.size());
         
-        for (Node<RdfFileItem> item : list) {
+        for (Node item : list) {
             System.out.print(" " + item.name);
         }
         System.out.println();
