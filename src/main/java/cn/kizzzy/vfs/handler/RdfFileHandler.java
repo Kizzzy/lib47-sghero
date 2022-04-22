@@ -1,18 +1,19 @@
 package cn.kizzzy.vfs.handler;
 
-import cn.kizzzy.io.DataOutputStreamEx;
 import cn.kizzzy.io.FullyReader;
+import cn.kizzzy.io.FullyWriter;
 import cn.kizzzy.io.SeekType;
 import cn.kizzzy.sghero.RdfFile;
 import cn.kizzzy.sghero.RdfFileItem;
+import cn.kizzzy.vfs.IFileHandler;
 import cn.kizzzy.vfs.IPackage;
 
 import java.nio.charset.Charset;
 
-public class RdfFileHandler extends StreamFileHandler<RdfFile> {
+public class RdfFileHandler implements IFileHandler<RdfFile> {
     
     @Override
-    protected RdfFile loadImpl(IPackage pack, String path, FullyReader reader) throws Exception {
+    public RdfFile load(IPackage vfs, String path, FullyReader reader, long size) throws Exception {
         RdfFile file = new RdfFile();
         file.pkg = path;
         
@@ -41,7 +42,7 @@ public class RdfFileHandler extends StreamFileHandler<RdfFile> {
     }
     
     @Override
-    protected void saveImpl(DataOutputStreamEx writer, RdfFile data) throws Exception {
-    
+    public boolean save(IPackage vfs, String path, FullyWriter writer, RdfFile data) throws Exception {
+        return false;
     }
 }
