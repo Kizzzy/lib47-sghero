@@ -6,6 +6,7 @@ import cn.kizzzy.vfs.IFileLoader;
 import cn.kizzzy.vfs.IFileSaver;
 import cn.kizzzy.vfs.IStreamable;
 import cn.kizzzy.vfs.ITree;
+import cn.kizzzy.vfs.Separator;
 import cn.kizzzy.vfs.streamable.FileStreamable;
 import cn.kizzzy.vfs.tree.Leaf;
 
@@ -29,7 +30,7 @@ public class RdfPackage extends AbstractPackage {
         
         RdfFileItem file = (RdfFileItem) leaf.item;
         
-        String fullPath = FILE_SEPARATOR.combine(root, file.pkg);
+        String fullPath = Separator.FILE_SEPARATOR.combine(root, file.pkg);
         if (file.getSource() == null) {
             file.setSource(new FileStreamable(fullPath));
         }
