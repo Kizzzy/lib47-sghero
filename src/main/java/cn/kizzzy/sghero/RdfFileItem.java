@@ -1,9 +1,8 @@
 package cn.kizzzy.sghero;
 
-import cn.kizzzy.vfs.IStreamable;
 import cn.kizzzy.io.FullyReader;
-import cn.kizzzy.io.IFullyReader;
 import cn.kizzzy.io.SliceFullReader;
+import cn.kizzzy.vfs.IStreamable;
 
 public class RdfFileItem implements IStreamable {
     public int pathLength;
@@ -32,19 +31,6 @@ public class RdfFileItem implements IStreamable {
         if (getSource() == null) {
             throw new NullPointerException("source is null");
         }
-        IFullyReader parent = getSource().OpenStream();
-        return new SliceFullReader(parent, offset, size);
-    }
-    
-    @Override
-    public String toString() {
-        return "RdfFileItem{" +
-            "pathLength=" + pathLength +
-            ", path='" + path + '\'' +
-            ", type=" + type +
-            ", size=" + size +
-            ", index=" + index +
-            ", offset=" + offset +
-            '}';
+        return new SliceFullReader(getSource().OpenStream(), offset, size);
     }
 }
