@@ -1,6 +1,6 @@
 package cn.kizzzy.sghero;
 
-import cn.kizzzy.io.FullyReader;
+import cn.kizzzy.io.IFullyReader;
 import cn.kizzzy.io.SliceFullReader;
 import cn.kizzzy.vfs.IStreamable;
 
@@ -27,7 +27,7 @@ public class RdfFileItem implements IStreamable {
     }
     
     @Override
-    public FullyReader OpenStream() throws Exception {
+    public IFullyReader OpenStream() throws Exception {
         if (getSource() == null) {
             throw new NullPointerException("source is null");
         }

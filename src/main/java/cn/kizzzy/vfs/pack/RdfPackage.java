@@ -1,6 +1,6 @@
 package cn.kizzzy.vfs.pack;
 
-import cn.kizzzy.io.FullyReader;
+import cn.kizzzy.io.IFullyReader;
 import cn.kizzzy.sghero.RdfFileItem;
 import cn.kizzzy.vfs.IFileLoader;
 import cn.kizzzy.vfs.IFileSaver;
@@ -35,7 +35,7 @@ public class RdfPackage extends AbstractPackage {
             file.setSource(new FileStreamable(fullPath));
         }
         
-        try (FullyReader reader = file.OpenStream()) {
+        try (IFullyReader reader = file.OpenStream()) {
             Object obj = loader.load(this, path, reader, reader.length());
             if (obj instanceof IStreamable) {
                 ((IStreamable) obj).setSource(file);
