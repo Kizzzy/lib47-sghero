@@ -1,4 +1,4 @@
-package cn.kizzzy.vfs.pack;
+package cn.kizzzy.sghero.vfs.pack;
 
 import cn.kizzzy.io.IFullyReader;
 import cn.kizzzy.sghero.RdfFileItem;
@@ -7,6 +7,7 @@ import cn.kizzzy.vfs.IFileSaver;
 import cn.kizzzy.vfs.IStreamable;
 import cn.kizzzy.vfs.ITree;
 import cn.kizzzy.vfs.Separator;
+import cn.kizzzy.vfs.pack.AbstractPackage;
 import cn.kizzzy.vfs.streamable.FileStreamable;
 import cn.kizzzy.vfs.tree.Leaf;
 

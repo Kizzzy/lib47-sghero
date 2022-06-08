@@ -1,9 +1,11 @@
-package cn.kizzzy.vfs.tree;
+package cn.kizzzy.sghero.vfs.tree;
 
 import cn.kizzzy.sghero.RdfFile;
 import cn.kizzzy.sghero.RdfFileItem;
 import cn.kizzzy.vfs.ITree;
 import cn.kizzzy.vfs.Separator;
+import cn.kizzzy.vfs.tree.IdGenerator;
+import cn.kizzzy.vfs.tree.TreeBuilderAdapter;
 
 public class RdfTreeBuilder extends TreeBuilderAdapter<RdfFile, RdfFileItem> {
     
