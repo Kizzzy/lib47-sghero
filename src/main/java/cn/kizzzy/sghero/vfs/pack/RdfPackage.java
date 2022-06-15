@@ -1,8 +1,6 @@
 package cn.kizzzy.sghero.vfs.pack;
 
-import cn.kizzzy.io.IFullyReader;
 import cn.kizzzy.sghero.RdfFileItem;
-import cn.kizzzy.vfs.IFileLoader;
 import cn.kizzzy.vfs.IFileSaver;
 import cn.kizzzy.vfs.IStreamable;
 import cn.kizzzy.vfs.ITree;
@@ -23,7 +21,7 @@ public class RdfPackage extends AbstractPackage {
     }
     
     @Override
-    protected Object loadImpl(String path, IFileLoader<?> loader) throws Exception {
+    protected IStreamable getStreamableImpl(String path) {
         Leaf leaf = tree.getLeaf(path);
         if (leaf == null || !(leaf.item instanceof RdfFileItem)) {
             return null;
@@ -36,13 +34,7 @@ public class RdfPackage extends AbstractPackage {
             file.setSource(new FileStreamable(fullPath));
         }
         
-        try (IFullyReader reader = file.OpenStream()) {
-            Object obj = loader.load(this, path, reader, reader.length());
-            if (obj instanceof IStreamable) {
-                ((IStreamable) obj).setSource(file);
-            }
-            return obj;
-        }
+        return file;
     }
     
     @Override
