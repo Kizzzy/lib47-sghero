@@ -1,12 +1,17 @@
 package cn.kizzzy.sghero.vfs.pack;
 
-import cn.kizzzy.sghero.RdfFileItem;
+import cn.kizzzy.sghero.RdfFile;
 import cn.kizzzy.vfs.ITree;
 import cn.kizzzy.vfs.pack.LeafPackage;
+import cn.kizzzy.vfs.stream.FileStreamGetterFactory;
 
-public class RdfPackage extends LeafPackage<RdfFileItem> {
+public class RdfPackage extends LeafPackage<RdfFile.Entry> {
     
     public RdfPackage(String root, ITree tree) {
-        super(root, tree, RdfFileItem.class, item -> item.pkg);
+        this(tree, new FileStreamGetterFactory(root));
+    }
+    
+    public RdfPackage(ITree tree, FileStreamGetterFactory factory) {
+        super(tree, factory, RdfFile.Entry.class, item -> item.pack);
     }
 }
