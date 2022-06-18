@@ -19,12 +19,12 @@ public class RdfFileHandler implements IFileHandler<RdfFile> {
         while (true) {
             try {
                 RdfFile.Entry item = new RdfFile.Entry(path);
-                item.index = index++;
-                
                 item.pathLength = reader.readIntEx();
                 item.path = reader.readString(item.pathLength, Charset.forName("GB2312"));
                 item.type = reader.readIntEx();
                 item.size = reader.readIntEx();
+                
+                item.index = index++;
                 item.offset = reader.position();
                 
                 reader.seek(item.size, SeekType.CURRENT);
