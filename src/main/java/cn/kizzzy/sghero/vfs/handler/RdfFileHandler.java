@@ -13,16 +13,18 @@ public class RdfFileHandler implements IFileHandler<RdfFile> {
     
     @Override
     public RdfFile load(IPackage vfs, String path, IFullyReader reader, long size) throws Exception {
+        reader.setLittleEndian(true);
+        
         RdfFile file = new RdfFile(path);
         
         int index = 0;
         while (true) {
             try {
                 RdfFile.Entry item = new RdfFile.Entry(path);
-                item.pathLength = reader.readIntEx();
+                item.pathLength = reader.readInt();
                 item.path = reader.readString(item.pathLength, Charset.forName("GB2312"));
-                item.type = reader.readIntEx();
-                item.size = reader.readIntEx();
+                item.type = reader.readInt();
+                item.size = reader.readInt();
                 
                 item.index = index++;
                 item.offset = reader.position();
