@@ -9,7 +9,7 @@ import cn.kizzzy.vfs.stream.FileStreamGetterFactory;
 public class RdfPackage extends LeafPackage<RdfFile.Entry> {
     
     public RdfPackage(String root, ITree tree) {
-        this(tree, new FileStreamGetterFactory(root));
+        this(tree, new FileStreamGetterFactory(root, tree));
     }
     
     public RdfPackage(ITree tree, IStreamGetterFactory factory) {
